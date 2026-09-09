@@ -1,0 +1,21 @@
+! ASW2 - Layer 2 Access Switch
+! EtherChannel to DSW2 using PAgP, trunk
+!
+hostname ASW2
+!
+interface range GigabitEthernet0/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 2 mode desirable
+!
+interface Port-channel2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 1
+!
+port-channel load-balance src-dst-ip
+!
+end
