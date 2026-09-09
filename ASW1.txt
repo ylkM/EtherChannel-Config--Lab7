@@ -1,0 +1,25 @@
+! ASW1 - Layer 2 Access Switch
+! EtherChannel to DSW1 using LACP, trunk
+!
+hostname ASW1
+!
+interface range GigabitEthernet0/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface Port-channel1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 1
+!
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 1
+!
+port-channel load-balance src-dst-ip
+!
+end
